@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 5000
 // Database
 const { Pool } = require('pg');
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: 'postgres://gjjptumrojrmhp:9e21795367be032a5ce71d04f215fdab8174d8ce8ed97ad1c358a38e17d71634@ec2-75-101-153-56.compute-1.amazonaws.com:5432/d1a7f3rs7ip697',
   ssl: true
 });
 
