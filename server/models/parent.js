@@ -4,14 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     //no attributes
   }, {});
   parent.associate = function(models) {
-    parent.belongsTo(models.user,{
-    	foreignKey: 'userId',
-    	onDelete: 'CASCADE',
-    });
-    parent.hasMany(models.student, {
-      foreignKey: 'parentId',
-      as: 'students',
-    });
+    
   };
   return parent;
 };

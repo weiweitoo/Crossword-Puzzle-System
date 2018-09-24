@@ -26,6 +26,9 @@ app.get('/times', (req, res) => {
 	  }
 	  res.send(result)
 	});
+app.get('/tajamtajam', (req, res) => {
+	  res.json({"hello" : "10"});
+	});
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 

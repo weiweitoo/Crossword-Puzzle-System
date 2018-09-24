@@ -1,18 +1,21 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('reactions', {
+    return queryInterface.createTable('comments', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      reactiontype: {
-        allowNull: false,
-        type: Sequelize.INTEGER
+      content: {
+        type: Sequelize.STRING
+      },
+      commentdate: {
+        type: Sequelize.DATE
       },
       userId:{
+        allowNull: false,
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references:{
@@ -22,7 +25,8 @@ module.exports = {
         },
       },
       classpostId:{
-      	primaryKey: true,
+        unique:true,
+        primaryKey: true,
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references:{
@@ -38,10 +42,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      },
+      }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('reactions');
+    return queryInterface.dropTable('comments');
   }
 };

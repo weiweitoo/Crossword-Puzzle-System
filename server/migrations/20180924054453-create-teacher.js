@@ -3,12 +3,14 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('teachers', {
       id: {
+        unique: true,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
       userId:{
+        unique:true,
         primaryKey: true,
         allowNull: false,
         type: Sequelize.INTEGER,
