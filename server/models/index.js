@@ -8,7 +8,14 @@ const db = {};
 
 let sequelize;
 if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable]);
+  sequelize = new Sequelize(process.env[config.use_env_variable],{
+    dialect: "postgres",
+    protocol: "postgres",
+    port: 5432,
+    host: "ec2-75-101-153-56.compute-1.amazonaws.com",
+    logging: true //false
+  });
+  // sequelize = require('sequelize-heroku').connect(require('sequelize'));
 } else {
   sequelize = new Sequelize(
     config.database, config.username, config.password, config
