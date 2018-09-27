@@ -7,15 +7,33 @@ const config = require(`${__dirname}/../config/config.json`)[env];
 const db = {};
 const pg = require('pg');
 
-// var connectionString = "postgres://gjjptumrojrmhp:9e21795367be032a5ce71d04f215fdab8174d8ce8ed97ad1c358a38e17d71634@ec2-75-101-153-56.compute-1.amazonaws.com:5432/d1a7f3rs7ip697?ssl=true"
+var connString = "postgres://gjjptumrojrmhp:9e21795367be032a5ce71d04f215fdab8174d8ce8ed97ad1c358a38e17d71634@ec2-75-101-153-56.compute-1.amazonaws.com:5432/d1a7f3rs7ip697?ssl=true"
 
-// pg.connect(connectionString, function(err, client, done) {
-//    client.query('SELECT * FROM your_table', function(err, result) {
-//       done();
-//       if(err) return console.error(err);
-//       console.log(result.rows);
-//    });
-// });
+var pg = require('pg');
+
+// Get your USER, PW (password) , HOST, PORT, and DATABASE variables from heroku
+// so that you can put them in your connection string.
+
+
+var client = new pg.Client(connString);
+
+
+// Now you can start querying your database. Here is a sample. 
+
+client.connect(function(err) {
+   if (err) { 
+     return console.error('could not connect to postgresq',err);
+   }
+   var query = "SELECT fieldName FROM \"Users\" where username='" + username + "';"
+   client.query(query, function(err, result) {
+        if (err) {
+            return console.err("could not complete query", err);
+        } 
+        client.end();
+        console.log(result.rows[0].fieldName);
+
+   });
+})
 
 let sequelize;
 if (config.use_env_variable) {
