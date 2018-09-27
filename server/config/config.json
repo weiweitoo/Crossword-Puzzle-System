@@ -17,5 +17,6 @@
     "host": "ec2-75-101-153-56.compute-1.amazonaws.com",
     "port" : "5432",
     "dialect": "postgres",
+    
   }
 }
