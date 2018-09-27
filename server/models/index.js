@@ -52,22 +52,34 @@
 //     });
 //   });
 // });
-
-var sequelize = require('sequelize-heroku').connect(require('sequelize'));
-
-if (sequelize) {
-    sequelize.authenticate().then( function() {
-        var config = sequelize.connectionManager.config;
-        console.log('sequelize-heroku: Connected to '+config.host+' as '+config.username+'.');
-        
-        sequelize.query('SELECT 1+1 as test').then( function(res) {
-            console.log('1+1='+res[0][0].test);
-        });
-        
-    }).catch( function(err) {
-        var config = sequelize.connectionManager.config;
-        console.log('Sequelize: Error connecting '+config.host+' as '+config.user+': '+err);
-    });
+if (!global.hasOwnProperty("models")) {
+  var Sequelize = require("sequelize"),
+    sequelize = null;
+if (process.env.HEROKU_POSTGRESQL_BRONZE_URL) {
+    // the application is executed on Heroku ... use the postgres         database
+sequelize =new Sequelize(process.env.HEROKU_POSTGRESQL_BLACK_URL,
+ {
+   dialect: "postgres",
+   protocol: "postgres",
+   port: 5432,
+   host: "<heroku host>",
+   logging: true //false
+});
 } else {
-    console.log('No environnement variable found.');
+// the application is executed on the local machine ... use mysql
+  sequelize =new Sequelize("postgres://<username>:<password>@<host>:  <port>/<database>",
+  {
+  dialect: "postgres"
+  }
+ );
 }
+global.models = {
+  Sequelize: Sequelize,
+  sequelize: sequelize,
+  User: sequelize.import(__dirname + "/user"),
+// add your other models here
+  };
+}
+module.exports = global.models;
+
+//postgres://xmqqlrjqeimxyq:658e0c7f61abd31631daeb7d6989a2f564c563f6e3e50208111ee065b4cf291b@ec2-174-129-18-98.compute-1.amazonaws.com:5432/d63l5bsbtt338e
