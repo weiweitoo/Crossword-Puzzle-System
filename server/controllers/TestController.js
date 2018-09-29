@@ -2,6 +2,6 @@
 
 module.exports = {
   test(req,res){
-    res.json({"Hello":"105"});
+    res.json({"Hello":"1052"});
   }
 };
