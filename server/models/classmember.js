@@ -5,14 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
 
   classmember.associate = function(models) {
-    classmember.belongsTo(models.user,{
-    	foreignKey: 'userId',
-    	onDelete: 'CASCADE',
-    });
-    classmember.belongsTo(models.class,{
-    	foreignKey: 'classId',
-    	onDelete: 'CASCADE',
-    });
+   
   };
   return classmember;
 };

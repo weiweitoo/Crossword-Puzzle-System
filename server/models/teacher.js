@@ -4,23 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     //
   }, {});
   teacher.associate = function(models) {
-    teacher.belongsTo(models.user,{
-    	foreignKey: 'userId',
-    	onDelete: 'CASCADE',
-    });
-    teacher.hasMany(models.question {
-      unique:true,
-      foreignKey: 'teacherId',
-      as: 'questions',
-    });
-    teacher.hasMany(models.appointment {
-      foreignKey: 'teacherId',
-      as: 'appointments',
-    });
-    teacher.hasMany(models.freetimeslot {
-      foreignKey: 'teacherId',
-      as: 'freetimeslots',
-    });
+   
   };
   return teacher;
 };

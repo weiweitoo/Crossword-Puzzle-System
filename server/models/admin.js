@@ -4,10 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     content: DataTypes.STRING
   }, {});
   admin.associate = function(models) {
-    admin.belongsTo(models.user,{
-    	foreignKey: 'userId',
-    	onDelete: 'CASCADE',
-    });
+    
   };
   return admin;
 };

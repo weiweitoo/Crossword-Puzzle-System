@@ -1,18 +1,9 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const parent = sequelize.define('parent', {
+  const parent = sequelize.define('parents', {
     //no attributes
-  }, {});
+  });
   parent.associate = function(models) {
-    parent.belongsTo(models.user,{
-    	foreignKey: 'userId',
-    	onDelete: 'CASCADE',
-    });
-    parent.hasMany(models.student, {
-      unique:true,
-      foreignKey: 'parentId',
-      as: 'students',
-    });
   };
   return parent;
 };
