@@ -8,7 +8,28 @@ module.exports = {
         email: 'demo@demo.com',
         createdAt: new Date(),
         updatedAt: new Date()
-      }], {});
+      }], {}),
+    queryInterface.bulkInsert('users', [{
+            username: 'Ali',
+            password: 'Dool',
+            email: 'demo@demo.com',
+            createdAt: new Date(),
+            updatedAt: new Date()
+          }], {}),
+    queryInterface.bulkInsert('users', [{
+            username: 'No',
+            password: 'Hobita',
+            email: 'demo@demo.com',
+            createdAt: new Date(),
+            updatedAt: new Date()
+          }], {}),
+    queryInterface.bulkInsert('users', [{
+            username: 'Ching',
+            password: 'Tajam',
+            email: 'demo@demo.com',
+            createdAt: new Date(),
+            updatedAt: new Date()
+          }], {})
   },
 
   down: (queryInterface, Sequelize) => {
