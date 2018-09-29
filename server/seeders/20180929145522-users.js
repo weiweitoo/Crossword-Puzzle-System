@@ -2,31 +2,31 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('users', [{
+    return queryInterface.bulkInsert('users', [{  //Parent
         username: 'John',
-        password: 'Doe',
-        email: 'demo@demo.com',
+        password: 'parents',
+        email: 'parent@example.com',
         createdAt: new Date(),
         updatedAt: new Date()
       }], {}),
-    queryInterface.bulkInsert('users', [{
+    queryInterface.bulkInsert('users', [{ //admin
             username: 'Ali',
-            password: 'Dool',
-            email: 'demo@demo.com',
+            password: 'admin',
+            email: 'admin@example.com',
             createdAt: new Date(),
             updatedAt: new Date()
           }], {}),
-    queryInterface.bulkInsert('users', [{
+    queryInterface.bulkInsert('users', [{ //student
             username: 'No',
-            password: 'Hobita',
-            email: 'demo@demo.com',
+            password: 'student',
+            email: 'student@example.com',
             createdAt: new Date(),
             updatedAt: new Date()
           }], {}),
-    queryInterface.bulkInsert('users', [{
+    queryInterface.bulkInsert('users', [{ // Teacher
             username: 'Ching',
-            password: 'Tajam',
-            email: 'demo@demo.com',
+            password: 'teacher',
+            email: 'teacher@example.com',
             createdAt: new Date(),
             updatedAt: new Date()
           }], {})
