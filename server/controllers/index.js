@@ -1,4 +1,4 @@
-const TestController = require('./TestController.js').TestController;
+const TestController = require('./TestController.js');
 
 module.exports = {
   TestController
