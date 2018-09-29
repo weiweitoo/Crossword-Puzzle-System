@@ -1,7 +1,9 @@
 const TestController = require('../controllers').TestController;
+const ParentController = require('../controllers').ParentController;
 
 module.exports = (app) => {
   
-  app.get('*', TestController.test);
+  app.get('/api/parent', ParentController.list);
+  app.post('/api/parent', ParentController.create); 
 
 };
