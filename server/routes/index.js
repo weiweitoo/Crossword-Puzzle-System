@@ -12,6 +12,7 @@ const UserController = require('../controllers').UserController;
 const FreeTimeSlotController = require('../controllers').FreeTimeSlotController;
 const QuestionController = require('../controllers').QuestionController;
 const CommentsController = require('../controllers').CommentsController;
+const ResultsController = require('../controllers').ResultsController;
 var multer = require('multer');
 
 module.exports = (app) => {
@@ -69,6 +70,13 @@ module.exports = (app) => {
 	app.post('/api/question', QuestionController.create);
 	app.post('/api/savequestion', QuestionController.save_file);
 	app.get('/api/question/:studentId/:classId', QuestionController.get_quest_cls_std_id);
+	app.get('/api/question_score/:studentId/:classId', QuestionController.get_score_cls_std_id);
+	app.get('/api/question/:classId', QuestionController.get_quest_clsId);
+	
+
+	app.get('/api/results', ResultsController.list);
+	app.post('/api/results', ResultsController.create);
+	app.get('/api/avg_results/:questId', ResultsController.avg_results);
 
 	var storage = multer.diskStorage({
 		destination: (req, file, cb) => {
