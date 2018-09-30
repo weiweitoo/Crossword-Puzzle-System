@@ -19,12 +19,9 @@ module.exports = {
   StudentController,
   TeacherController,
   AdminController,
-<<<<<<< HEAD
   AppointmentsController,
   ClassController,
   ClasspostController,
-  UserController
-=======
+  UserController,
   FreeTimeSlotController
->>>>>>> b6a37c4b18c6fec1f0187c321be386475ee0e21b
 };
