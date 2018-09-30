@@ -24,6 +24,7 @@ module.exports = {
         // TODO join with parent to get children id
         return Parents.findAll({attributes:[['userId',"id"]]}).then(function(parents){
             Users.findAll({
+                attributes:['username','email'],
                 where:{
                     [Op.or]: parents.map(function(e){
                     return e.toJSON();

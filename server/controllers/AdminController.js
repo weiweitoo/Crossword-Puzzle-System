@@ -26,6 +26,7 @@ module.exports = {
         })
         .then(function(admins){
             Users.findAll({
+                attributes:['username','email'],
                 where:{
                     [Op.or]: admins.map(function(e){
                     return e.toJSON();

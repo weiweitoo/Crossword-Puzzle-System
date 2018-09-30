@@ -12,8 +12,6 @@ module.exports = {
         email: req.body.email,
     })
     .then(function(Users){
-        // res.status(201).json(Users);
-        // res.status(201).json({'hehe' : Users.id});
         Teachers.create({
             userId: Users.id
         })
@@ -26,6 +24,7 @@ module.exports = {
     list(req, res) {
         return Teachers.findAll({attributes:[['userId',"id"]]}).then(function(teachers){
             Users.findAll({
+                attributes:['username','email'],
                 where:{
                     [Op.or]: teachers.map(function(e){
                     return e.toJSON();

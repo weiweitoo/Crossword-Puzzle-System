@@ -2,8 +2,9 @@ const Users = require('../models').users;
 
 module.exports = {
   list(req, res) {
-    return Users
-      .all()
+    return Users.all({
+      attributes:['username','email']
+    })
       .then(user => res.status(200).send(user))
       .catch(error => res.status(400).send(error));
   },
