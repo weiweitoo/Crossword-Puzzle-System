@@ -24,7 +24,7 @@ module.exports = {
     list(req, res) {
         return Teachers.findAll({attributes:[['id','userId',"id"]]}).then(function(teachers){
             Users.findAll({
-                attributes:['username','email'],
+                attributes:['id','username','email'],
                 where:{
                     [Op.or]: teachers.map(function(e){
                     return e.toJSON();
