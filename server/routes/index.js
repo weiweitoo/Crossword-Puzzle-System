@@ -19,9 +19,9 @@ module.exports = (app) => {
 	app.get('/api/parent', ParentController.list);
 	app.get('/api/userid-parent/:userId', ParentController.getId);
 	app.get('/api/parent-userid/:parentId', ParentController.getUserId);
+	app.get('/api/parent-info/:parentId', ParentController.getInfo);
 	app.get('/api/parent-childreninfo/:parentId', ParentController.getChildrenInfo);
 	app.post('/api/parent', ParentController.create); 
-
 
 	app.get('/api/lecturer-list/:userId', StudentController.getLecturerList);
 
@@ -37,29 +37,34 @@ module.exports = (app) => {
 
 	app.get('/api/student', StudentController.list);
 	app.get('/api/student/:userId', StudentController.getId);
-	app.post('/api/student', StudentController.create); 
+	app.get('/api/student-info/:studentId', StudentController.getInfo);
+	app.get('/api/student-userid/:studentId', StudentController.getUserId);
+	app.post('/api/student', StudentController.create);
 
 	app.get('/api/teacher', TeacherController.list);
 	app.get('/api/teacher/:userId', TeacherController.getId);
-	app.post('/api/teacher', TeacherController.create); 
+	app.get('/api/teacher-info/:teacherId', TeacherController.getInfo);
+	app.get('/api/teacher-userid/:teacherId', TeacherController.getUserId);
+	app.post('/api/teacher', TeacherController.create);
 
 	app.get('/api/admin', AdminController.list);
 	app.get('/api/admin/:userId', AdminController.getId);
-	app.post('/api/admin', AdminController.create); 
+	app.get('/api/admin-info/:adminId', AdminController.getInfo);
+	app.get('/api/admin-userid/:adminId', AdminController.getUserId);
+	app.post('/api/admin', AdminController.create);
 
-	app.get('/api/freetime/:teacherId', FreeTimeSlotController.show); 
+	app.get('/api/freetime/:teacherId', FreeTimeSlotController.show);
 
 	app.get('/api/appointment', AppointmentsController.list);
 	app.get('/api/available-appointment/:teacherId', AppointmentsController.getAvailableSlot);
-	app.post('/api/appointment', AppointmentsController.create); 
-	app.post('/api/book-appointment', AppointmentsController.bookSlot); 
-
+	app.post('/api/appointment', AppointmentsController.create);
+	app.post('/api/book-appointment', AppointmentsController.bookSlot);
 
 	app.get('/api/classpost', ClasspostController.list);
 	app.post('/api/classpost', ClasspostController.create); 
 
 	app.get('/api/comments', CommentsController.list);
-	app.post('/api/comments', CommentsController.create); 
+	app.post('/api/comments', CommentsController.create);
 
 	app.get('/api/user', UserController.list);
 	app.post('/api/user_login', UserController.login);
@@ -70,30 +75,50 @@ module.exports = (app) => {
 	app.post('/api/savequestion', QuestionController.save_file);
 	app.get('/api/question/:studentId/:classId', QuestionController.get_quest_cls_std_id);
 
-	var storage = multer.diskStorage({
-		destination: (req, file, cb) => {
-		  cb(null, 'public/images/uploads')
-		},
-		filename: (req, file, cb) => {
-		  cb(null, file.fieldname + '-' + Date.now())
-		}
-	});
-	var upload = multer({storage: storage})
 
-	app.post('/api/upload', upload.single('avatar'), (req, res) => {
-		// return res.send({'123':req.body.file});
-	  if (!req.body.file) {
-		console.log("No file received");
-		return res.send({
-		  success: false
-		});
-	  } else {
-		console.log('file received');
-		return res.send({
-		  success: true
-		})
-	  }
-	});
 
+	// const multerConfig = {
+
+	//    //specify diskStorage (another option is memory)
+	//    storage: multer.diskStorage({
+
+	//      //specify destination
+	//      destination: function(req, file, next){
+	//        next(null, './public/photo-storage');
+	//      },
+
+	//      //specify the filename to be unique
+	//      filename: function(req, file, next){
+	//        console.log(file);
+	//        //get the file mimetype ie 'image/jpeg' split and prefer the second value ie'jpeg'
+	//        const ext = file.mimetype.split('/')[1];
+	//        //set the file fieldname to a unique name containing the original name, current datetime and the extension.
+	//        next(null, file.fieldname + '-' + Date.now() + '.'+ext);
+	//      }
+	//    });
+
+ //   	// filter out and prevent non-image files.
+ //   	fileFilter: function(req, file, next){
+ //   	      if(!file){
+ //   	        next();
+ //   	      }
+ //   	    // only permit image mimetypes
+ //   	    const image = file.mimetype.startsWith('image/');
+ //   	    if(image){
+ //   	      console.log('photo uploaded');
+ //   	      next(null, true);
+ //   	    }else{
+ //   	      console.log("file not supported")
+ //   	      //TODO:  A better message response to user on failure.
+ //   	      return next();
+ //   	    }
+ //   	}
+
+ //   	app.post('/upload', multer(multerConfig).single('photo'),function(req, res){
+ //   	    //Here is where I could add functions to then get the url of the new photo
+ //   	    //And relocate that to a cloud storage solution with a callback containing its new url
+ //   	    //then ideally loading that into your database solution.   Use case - user uploading an avatar...
+ //   	    res.send('Complete! Check out your public/photo-storage folder.  Please note that files not encoded with an image mimetype are rejected. <a href="index.html">try again</a>');
+ //   	}
 
 };

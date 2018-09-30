@@ -14,7 +14,6 @@ module.exports = {
       where: {userId: req.params.userId}
     })
     .then(function(classes){
-      // res.status(201).send(classes)
       Classes.findAll({
         attributes: [['id','classId']],
         where:{
@@ -69,5 +68,36 @@ module.exports = {
       })
       .then(students => res.status(200).send(students))
       .catch(error => res.status(400).send(error));
-  }
+  },
+
+  getUserId(req, res) {
+    Students.findAll({
+        where:{
+          id : req.params.studentId
+        }
+      })
+      .then(students => res.status(200).send(students[0]))
+      .catch(error => res.status(400).send(error));
+  },
+
+  getInfo(req, res) {
+      Students.findAll({
+          attributes : [['userId','id']],
+          where:{
+            id : req.params.studentId
+          }
+        })
+        .then(function(parents){
+            Users.findAll({
+                where:{
+                    [Op.or]: parents.map(function(e){
+                        return e.toJSON();
+                    })
+                }
+              })
+              .then(users => res.status(200).send(users[0]))
+              .catch(error => res.status(400).send(error));      
+        })
+        .catch(error => res.status(400).send(error));
+    },
 };

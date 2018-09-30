@@ -45,5 +45,36 @@ module.exports = {
         })
         .then(teachers => res.status(200).send(teachers))
         .catch(error => res.status(400).send(error));
-    }
+    },
+
+    getUserId(req, res) {
+      Teachers.findAll({
+          where:{
+            id : req.params.teacherId
+          }
+        })
+        .then(teachers => res.status(200).send(teachers[0]))
+        .catch(error => res.status(400).send(error));
+    },
+
+    getInfo(req, res) {
+        Teachers.findAll({
+            attributes : [['userId','id']],
+            where:{
+              id : req.params.teacherId
+            }
+          })
+          .then(function(parents){
+              Users.findAll({
+                  where:{
+                      [Op.or]: parents.map(function(e){
+                          return e.toJSON();
+                      })
+                  }
+                })
+                .then(users => res.status(200).send(users[0]))
+                .catch(error => res.status(400).send(error));      
+          })
+          .catch(error => res.status(400).send(error));
+      },
 };
