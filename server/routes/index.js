@@ -51,7 +51,7 @@ module.exports = (app) => {
 
 	app.get('/api/user', UserController.list);
 	app.post('/api/user_login', UserController.login);
-	app.post('/api/user_type', UserController.user_type);
+  app.get('/api/user-type/:userId', UserController.userType);
 
 	app.get('/api/question', QuestionController.list);
 	app.post('/api/question', QuestionController.create);
