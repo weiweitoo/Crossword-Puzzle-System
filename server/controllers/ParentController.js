@@ -3,11 +3,8 @@ const Parents = require('../models').parents;
 const Sequelize = require('Sequelize');
 const Op = Sequelize.Op;
 
-
-
 module.exports = {
   create(req, res) {
-
     return Users.create({
         username: req.body.username,
         password: req.body.password,
@@ -23,8 +20,7 @@ module.exports = {
         .catch(error => res.status(400).send(error));
     })
     .catch(error => res.status(400).send(error));
-    },
-
+  },
   list(req, res) {
     return Parents.findAll({attributes:[['userId',"id"]]}).then(function(parents){
         Users.findAll({

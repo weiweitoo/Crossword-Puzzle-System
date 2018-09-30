@@ -1,5 +1,5 @@
 const Users = require('../models').users;
-const Teachers = require('../models').teacher;
+const Teachers = require('../models').teachers;
 const Sequelize = require('Sequelize');
 const Op = Sequelize.Op;
 

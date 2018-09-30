@@ -12,7 +12,6 @@ module.exports = {
         type: Sequelize.STRING
       },
       teacherId:{
-        unique:true,
         allowNull: false,
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',

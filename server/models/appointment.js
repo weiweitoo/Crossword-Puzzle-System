@@ -6,7 +6,6 @@ module.exports = (sequelize, DataTypes) => {
     appointmentdate: DataTypes.DATE
   });
   appointment.associate = function(models) {
-    
   };
   return appointment;
 };

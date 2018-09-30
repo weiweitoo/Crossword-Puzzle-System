@@ -17,7 +17,5 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  // users.hasOne(Parents);
-
   return users;
 };
