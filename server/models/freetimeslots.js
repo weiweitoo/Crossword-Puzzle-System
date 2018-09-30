@@ -4,10 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     timeslotfilename: DataTypes.STRING
   }, {});
   freetimeslots.associate = function(models) {
-    freetimeslots.belongsTo(models.teachers,{
-    	foreignKey: 'teacherId',
-    	onDelete: 'CASCADE',
-    });
+    
   };
   return freetimeslots;
 };
