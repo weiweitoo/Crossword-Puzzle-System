@@ -47,5 +47,36 @@ module.exports = {
           })
           .then(classes => res.status(201).send(classes))
           .catch(error => res.status(400).send(error));
-    }
+    },
+
+    getUserId(req, res) {
+      Admins.findAll({
+          where:{
+            id : req.params.adminId
+          }
+        })
+        .then(admins => res.status(200).send(admins[0]))
+        .catch(error => res.status(400).send(error));
+    },
+
+    getInfo(req, res) {
+        Admins.findAll({
+            attributes : [['userId','id']],
+            where:{
+              id : req.params.adminId
+            }
+          })
+          .then(function(parents){
+              Users.findAll({
+                  where:{
+                      [Op.or]: parents.map(function(e){
+                          return e.toJSON();
+                      })
+                  }
+                })
+                .then(users => res.status(200).send(users[0]))
+                .catch(error => res.status(400).send(error));      
+          })
+          .catch(error => res.status(400).send(error));
+      },
 };

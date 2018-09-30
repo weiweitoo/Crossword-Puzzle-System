@@ -56,6 +56,26 @@ module.exports = {
         .then(parents => res.status(200).send(parents[0]))
         .catch(error => res.status(400).send(error));
     },
+    getInfo(req, res) {
+      Parents.findAll({
+          attributes : [['userId','id']],
+          where:{
+            id : req.params.parentId
+          }
+        })
+        .then(function(parents){
+            Users.findAll({
+                where:{
+                    [Op.or]: parents.map(function(e){
+                        return e.toJSON();
+                    })
+                }
+              })
+              .then(users => res.status(200).send(users[0]))
+              .catch(error => res.status(400).send(error));      
+        })
+        .catch(error => res.status(400).send(error));
+    },
     getChildrenInfo(req, res){
         Parents.findAll({
             attributes : ['childrenId'],

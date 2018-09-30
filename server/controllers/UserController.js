@@ -4,52 +4,6 @@ const Students = require('../models').students;
 const Teachers = require('../models').teachers;
 const Admins = require('../models').admins;
 
-function isStudent(id){
-    return Students.count({where : {userId : id}})
-    .then(function(count){
-      if(count != 0){
-        return true;
-      }
-      return false;
-    });
-  }
-function isParent(id){
-    // return Parents.count({where : {userId : id}})
-    // .then(function(count){
-    //   if(count != 0){
-    //     return 22;
-    //   }
-    //   return 25;
-    // })
-    // .catch(function(error){
-    //   return 21;
-    // })
-
-    // Parents.findAll({
-    //   where:{
-    //     userId : id
-    //   }
-    // })
-  }
-function isTeacher(res, id){
-    return Teachers.count({where : {userId : id}})
-    .then(function(count){
-      if(count != 0){
-        return true;
-      }
-      return false;
-    })
-  }
-function isAdmin(id){
-    return Admin.count({where : {userId : id}})
-    .then(function(count){
-      if(count != 0){
-        return true;
-      }
-      return false;
-    });
-  }
-
 module.exports = {
   list(req, res) {
     return Users
