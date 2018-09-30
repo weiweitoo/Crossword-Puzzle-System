@@ -19,6 +19,7 @@ module.exports = (app) => {
 	app.get('/api/parent', ParentController.list);
 	app.get('/api/userid-parent/:userId', ParentController.getId);
 	app.get('/api/parent-userid/:parentId', ParentController.getUserId);
+	app.get('/api/parent-childreninfo/:parentId', ParentController.getChildrenInfo);
 	app.post('/api/parent', ParentController.create); 
 
 
@@ -65,6 +66,7 @@ module.exports = (app) => {
 	app.get('/api/question', QuestionController.list);
 	app.post('/api/question', QuestionController.create);
 	app.post('/api/savequestion', QuestionController.save_file);
+	app.get('/api/question/:studentId/:classId', QuestionController.get_quest_cls_std_id);
 
 	var storage = multer.diskStorage({
 	    destination: (req, file, cb) => {

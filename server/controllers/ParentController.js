@@ -1,5 +1,6 @@
 const Users = require('../models').users;
 const Parents = require('../models').parents;
+const Students = require('../models').students;
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
@@ -54,6 +55,28 @@ module.exports = {
         })
         .then(parents => res.status(200).send(parents[0]))
         .catch(error => res.status(400).send(error));
-    }
+    },
+    getChildrenInfo(req, res){
+        Parents.findAll({
+            attributes : ['childrenId'],
+          where:{
+            id : req.params.parentId
+          }
+        })
+        .then(function(parents){
+            Students.findAll({
+                where : { id : parents[0].dataValues.childrenId }
+            })
+            .then(function(students){
+                Users.findAll({
+                    where : {id : students[0].dataValues.userId}
+                })
+                .then(users => res.status(200).send(users))
+                .catch(error => res.status(400).send(error));
+            })
+            .catch(error => res.status(400).send(error));
+        })
+        .catch(error => res.status(400).send(error));
+    }   
 };
 
