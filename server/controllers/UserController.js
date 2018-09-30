@@ -8,6 +8,7 @@ module.exports = {
       .catch(error => res.status(400).send(error));
   },
   login(req, res){
-    if(req)
+    // if(req)
+    res.send({"!23":"123"});
   }
 };
