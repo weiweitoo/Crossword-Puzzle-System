@@ -12,7 +12,6 @@ const UserController = require('../controllers').UserController;
 const FreeTimeSlotController = require('../controllers').FreeTimeSlotController;
 const QuestionController = require('../controllers').QuestionController;
 const CommentsController = require('../controllers').CommentsController;
-var multer = require('multer');
 
 module.exports = (app) => {
 	
@@ -76,26 +75,13 @@ module.exports = (app) => {
 	app.get('/api/question/:studentId/:classId', QuestionController.get_quest_cls_std_id);
 
 
-
-
-	const multerConfig = {
-		storage: multer.diskStorage({
-
-			destination: function(req, file, next){
-				next(null, './public/uploadQuestion');
-			},
-
-			filename: function(req, file, next){
-				console.log(file);
-				const fileType = file.originalname.split('/');
-				const ext = fileType[fileType.length-1];
-				next(null, file.fieldname + '-' + Date.now() + '.'+ext);
-			}
-		})
-	};
-
-	app.post('/upload', multer(multerConfig).single('photo'),function(req, res){
-		res.send('Complete! Check out your public/photo-storage folder.  Please note that files not encoded with an image mimetype are rejected. <a href="index.html">try again</a>');
-	});
+	app.post('/csv', function (req, res) {
+	  fs.writeFile("./public/uploadQuestion/dede.csv", req.body.csv, function(err) {
+	      if(err) {
+	          return console.log(err);
+	      }
+	      res.send({"status":"The file was saved!"})
+	  }); 
+	})
 
 };
