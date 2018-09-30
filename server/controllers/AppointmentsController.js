@@ -33,7 +33,7 @@ module.exports = {
       {studentId: req.body.userId},
       {where: { id: req.body.appointmentId}}
     )
-      .then(appointment => res.status(200).send(appointment))
+      .then(appointment => res.status(200).send({"status":"success"}))
       .catch(error => res.status(400).send(error));
   },
 };
