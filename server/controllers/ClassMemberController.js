@@ -14,7 +14,7 @@ module.exports = {
 	},
 	show(req, res) {
 	 ClassMember.findAll({
-	    attributes: ['classId'],
+	    attributes: [['classId','id']],
 	    where: {userId: req.params.studentId}
 	  })
 		.then(function(classes){
