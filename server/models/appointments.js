@@ -3,9 +3,9 @@ module.exports = (sequelize, DataTypes) => {
   const appointments = sequelize.define('appointments', {
     appointmenttitle: DataTypes.STRING,
     appointmentdesc: DataTypes.STRING,
-    appointmentdate: DataTypes.DATE
+    appointmentdate: DataTypes.STRING,
+    teacherId: DataTypes.INTEGER,
+    studentId: DataTypes.INTEGER
   });
-  appointments.associate = function(models) {
-  };
   return appointments;
 };

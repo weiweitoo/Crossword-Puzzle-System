@@ -15,10 +15,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       appointmentdate: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING
       },
       teacherId:{
-        allowNull: false,
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references:{
@@ -28,7 +27,6 @@ module.exports = {
         },
       },
       studentId:{
-        allowNull: false,
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references:{
