@@ -40,7 +40,7 @@ module.exports = {
     getId(req, res) {
       Teachers.findAll({
           where:{
-            id: req.params.userId
+            userId: req.params.userId
           }
         })
         .then(teachers => res.status(201).send(teachers))

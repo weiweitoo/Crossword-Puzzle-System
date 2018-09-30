@@ -24,7 +24,6 @@ module.exports = {
         // TODO join with parent to get children id
         return Parents.findAll({attributes:[['userId',"id"]]}).then(function(parents){
             Users.findAll({
-                attributes:['username','email'],
                 where:{
                     [Op.or]: parents.map(function(e){
                     return e.toJSON();
@@ -40,7 +39,7 @@ module.exports = {
     getId(req, res) {
       Parents.findAll({
           where:{
-            id: req.params.userId
+            userId: req.params.userId
           }
         })
         .then(parents => res.status(201).send(parents))

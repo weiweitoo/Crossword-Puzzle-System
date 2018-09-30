@@ -42,7 +42,7 @@ module.exports = {
     getId(req, res) {
         Admins.findAll({
             where:{
-              id: req.params.userId
+              userId: req.params.userId
             }
           })
           .then(classes => res.status(201).send(classes))
