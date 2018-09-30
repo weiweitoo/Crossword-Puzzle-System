@@ -22,7 +22,7 @@ module.exports = {
   },
     list(req, res) {
         // TODO join with parent to get children id
-        return Parents.findAll({attributes:[['userId',"id"]]}).then(function(parents){
+        return Parents.findAll({attributes:[['id','userId',"id"]]}).then(function(parents){
             Users.findAll({
                 where:{
                     [Op.or]: parents.map(function(e){

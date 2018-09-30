@@ -22,7 +22,7 @@ module.exports = {
     },
 
     list(req, res) {
-        return Teachers.findAll({attributes:[['userId',"id"]]}).then(function(teachers){
+        return Teachers.findAll({attributes:[['id','userId',"id"]]}).then(function(teachers){
             Users.findAll({
                 attributes:['username','email'],
                 where:{

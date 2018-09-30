@@ -81,7 +81,7 @@ module.exports = {
   list(req, res) {
     return Students.findAll({attributes:[['userId',"id"]]}).then(function(student){
         Users.findAll({
-            attributes:['username','email'],
+            attributes:['id','username','email'],
             where:{
                 [Op.or]: student.map(function(e){
                 return e.toJSON();
