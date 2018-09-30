@@ -1,11 +1,11 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const appointment = sequelize.define('appointment', {
+  const appointments = sequelize.define('appointments', {
     appointmenttitle: DataTypes.STRING,
     appointmentdesc: DataTypes.STRING,
     appointmentdate: DataTypes.DATE
   });
-  appointment.associate = function(models) {
+  appointments.associate = function(models) {
   };
-  return appointment;
+  return appointments;
 };

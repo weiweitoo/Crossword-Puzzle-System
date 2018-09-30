@@ -3,7 +3,7 @@ const Op = Sequelize.Op;
 const Users = require('../models').users;
 const Students = require('../models').students;
 const Teachers = require('../models').teachers;
-const ClassMember = require('../models').classmember;
+const ClassMember = require('../models').classmembers;
 const Classes = require('../models').classes;
 const Questions = require('../models').questions;
 

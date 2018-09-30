@@ -1,4 +1,4 @@
-const Classposts = require('../models').classpost;
+const Classposts = require('../models').classposts;
 
 module.exports = {
   create(req, res) {

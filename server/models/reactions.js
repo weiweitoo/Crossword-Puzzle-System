@@ -1,10 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const reaction = sequelize.define('reaction', {
+  const reactions = sequelize.define('reactions', {
     reactiontype: DataTypes.INTEGER
   }, {});
-  reaction.associate = function(models) {
+  reactions.associate = function(models) {
    
   };
-  return reaction;
+  return reactions;
 };

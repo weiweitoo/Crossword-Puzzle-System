@@ -1,11 +1,11 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const comment = sequelize.define('comment', {
+  const comments = sequelize.define('comments', {
     content: DataTypes.STRING,
     commentdate: DataTypes.DATE
   });
-  comment.associate = function(models) {
+  comments.associate = function(models) {
    
   };
-  return comment;
+  return comments;
 };

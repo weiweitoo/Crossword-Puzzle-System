@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize');
 const Op = Sequelize.Op;
-const ClassMember = require('../models').classmember;
+const ClassMember = require('../models').classmembers;
 const Classes = require('../models').classes;
 
 module.exports = {

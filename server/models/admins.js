@@ -1,10 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const admin = sequelize.define('admin', {
+  const admins = sequelize.define('admins', {
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     }
   });
-  return admin;
+  return admins;
 };

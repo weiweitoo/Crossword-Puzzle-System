@@ -1,5 +1,5 @@
 const Users = require('../models').users;
-const Admins = require('../models').admin;
+const Admins = require('../models').admins;
 const Sequelize = require('Sequelize');
 const Op = Sequelize.Op;
 
