@@ -23,40 +23,7 @@ module.exports = {
           })
         }
       })
-      .then(function(questions){
-        Questions.findAll({
-          attributes: [['teacherId','id']],
-          where:{
-            [Op.or]: questions.map(function(e){
-              return e.toJSON();
-            })
-          }
-        })
-        .then(function(questions){
-          Teachers.findAll({
-            attributes: [['userId','id']],
-            where:{
-              [Op.or]: questions.map(function(e){
-                return e.toJSON();
-              })
-            }
-          })
-          .then(function(teachers){
-            // res.status(201).send(teachers)
-            Users.findAll({
-              where:{
-                [Op.or]: teachers.map(function(e){
-                  return e.toJSON();
-                })
-              }
-            })
-            .then(users => res.status(200).send(users))
-            .catch(error => res.status(400).send(error));
-          })
-          .catch(error => res.status(400).send(error));
-        })
-        .catch(error => res.status(400).send(error));
-      })
+      .then(users => res.status(200).send(users))
       .catch(error => res.status(400).send(error));
     })
     .catch(error => res.status(400).send(error));

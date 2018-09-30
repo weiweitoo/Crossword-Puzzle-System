@@ -1,5 +1,6 @@
 const Classes = require('../models').classes;
 const Users = require('../models').users;
+const Classposts = require('../models').classposts;
 
 module.exports = {
   create(req, res) {
@@ -25,6 +26,22 @@ module.exports = {
       .then(classes => res.status(200).send(classes))
       .catch(error => res.status(400).send(error));
   },
+  get_post(req, res){
+    return Classes.findAll({attributes:[['classId',"id"]]}).then(function(classes){
+            Classposts.findAll({
+                attributes:['posttitle','postdescription','postdate'],
+                where:{
+                    [Op.or]: classes.map(function(e){
+                    return e.toJSON();
+                })
+                }
+            })
+            .then(cls => res.status(200).send(cls))
+            .catch(error => res.status(400).send(error));
+        })
+          .catch(error => res.status(400).send(error));
+  }
+
   
 
 };

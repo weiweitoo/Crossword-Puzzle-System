@@ -16,7 +16,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       postdate: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING
       },
       userId:{
         primaryKey: true,

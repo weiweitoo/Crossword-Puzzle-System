@@ -2,7 +2,6 @@ const Classposts = require('../models').classposts;
 
 module.exports = {
   create(req, res) {
-    // res.send(req.body);
     return Classposts.create({
         posttitle: req.body.posttitle,
         postdescription: req.body.postdescription,

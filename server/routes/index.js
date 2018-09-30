@@ -26,6 +26,7 @@ module.exports = (app) => {
 	app.get('/api/class', ClassesController.list);
 	app.post('/api/class', ClassesController.create);
 
+	app.post('/api/classmember', ClassMemberController.create);
 	app.get('/api/classmember/:studentId', ClassMemberController.show);
 
 	app.get('/api/student', StudentController.list);
@@ -68,9 +69,7 @@ module.exports = (app) => {
 	var upload = multer({storage: storage})
 
 	app.post('/api/upload', upload.single('avatar'), (req, res) => {
-		return res.send({
-	      success: 123
-	    });
+		// return res.send({'123':req.body.file});
 	  if (!req.body.file) {
 	    console.log("No file received");
 	    return res.send({

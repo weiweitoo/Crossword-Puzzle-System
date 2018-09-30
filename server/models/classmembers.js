@@ -1,11 +1,9 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const classmembers = sequelize.define('classmembers', {
-    userId: DataTypes.INTEGER
+    userId: DataTypes.INTEGER,
+    classId: DataTypes.INTEGER
   });
 
-  classmembers.associate = function(models) {
-   
-  };
   return classmembers;
 };
