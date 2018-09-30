@@ -11,7 +11,7 @@ module.exports = {
   getLecturerList(req, res) {
     ClassMember.findAll({
       attributes: ['id'],
-      where: {userId: 1}
+      where: {userId: req.params.userId}
     })
     .then(function(classes){
       // res.status(201).send(classes)

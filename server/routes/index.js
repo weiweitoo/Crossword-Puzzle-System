@@ -22,7 +22,7 @@ module.exports = (app) => {
 	app.post('/api/parent', ParentController.create); 
 
 
-	app.get('/api/lecturer-list', StudentController.getLecturerList);
+	app.get('/api/lecturer-list/:userId', StudentController.getLecturerList);
 
 	app.get('/api/class/:classId', ClassesController.show);
 	app.get('/api/class', ClassesController.list);
@@ -60,7 +60,7 @@ module.exports = (app) => {
 
 	app.get('/api/user', UserController.list);
 	app.post('/api/user_login', UserController.login);
-	app.post('/api/user_type', UserController.user_type);
+  app.get('/api/user-type/:userId', UserController.userType);
 
 	app.get('/api/question', QuestionController.list);
 	app.post('/api/question', QuestionController.create);
