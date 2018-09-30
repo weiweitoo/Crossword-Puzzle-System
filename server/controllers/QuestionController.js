@@ -8,15 +8,17 @@ var fs = require('fs');
 module.exports = {
   create(req, res) {
     // Save file
-    fs.writeFile("./public/uploadQuestion/dede.csv", req.body.csv, function(err) {
-        if(err) {
-            return console.log(err);
-        }
-        res.send({"status":"The file was saved!"})
+    var random = new Date().valueOf().toString();
+
+    const fileName = "question_" + random + ".csv";
+    fs.writeFile("./public/uploadQuestion/" + fileName, req.body.csv, function(err) {
+      if(err) {
+        return console.log(err);
+      }
     }); 
 
     return Questions.create({
-        questfilename: req.body.questfilename,
+        questfilename: fileName,
         teacherId: req.body.teacherId,
         classId: req.body.classId,
         subjectId: req.body.subjectId
