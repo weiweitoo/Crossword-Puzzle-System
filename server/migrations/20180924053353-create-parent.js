@@ -20,6 +20,16 @@ module.exports = {
           as:'userId',
         },
       },
+      childrenId:{
+        unique:true,
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references:{
+          model: 'students',
+          key: 'id',
+          as:'id',
+        },
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

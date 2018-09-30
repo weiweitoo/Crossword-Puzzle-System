@@ -8,7 +8,7 @@ const Classes = require('../models').classes;
 const Questions = require('../models').questions;
 
 module.exports = {
-   getLecturerList(req, res) {
+  getLecturerList(req, res) {
     ClassMember.findAll({
       attributes: ['id'],
       where: {userId: 1}
@@ -69,8 +69,6 @@ module.exports = {
         email: req.body.email,
     })
     .then(function(Users){
-        // res.status(201).json(Users);
-        // res.status(201).json({'hehe' : Users.id});
         Students.create({
             userId: Users.id
         })

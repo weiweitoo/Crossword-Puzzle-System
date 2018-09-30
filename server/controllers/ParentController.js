@@ -11,10 +11,9 @@ module.exports = {
         email: req.body.email,
     })
     .then(function(Users){
-        // res.status(201).json(Users);
-        // res.status(201).json({'hehe' : Users.id});
         Parents.create({
-            userId: Users.id
+            userId: Users.id,
+            childrenId: req.body.childrenId
         })
         .then(Parents => res.status(200).send(Parents))
         .catch(error => res.status(400).send(error));

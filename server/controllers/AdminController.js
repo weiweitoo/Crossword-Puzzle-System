@@ -5,15 +5,12 @@ const Op = Sequelize.Op;
 
 module.exports = {
   create(req, res) {
-
     return Users.create({
         username: req.body.username,
         password: req.body.password,
         email: req.body.email,
     })
     .then(function(Users){
-        // res.status(201).json(Users);
-        // res.status(201).json({'hehe' : Users.id});
         Admins.create({
             userId: Users.id
         })

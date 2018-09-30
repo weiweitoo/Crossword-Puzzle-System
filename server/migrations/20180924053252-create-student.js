@@ -20,16 +20,6 @@ module.exports = {
           as:'userId',
         },
       },
-      parentId:{
-        unique:true,
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        references:{
-          model: 'parents',
-          key: 'id',
-          as:'parentId',
-        },
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
