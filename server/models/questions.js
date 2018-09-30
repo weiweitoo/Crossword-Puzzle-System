@@ -1,10 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const question = sequelize.define('question', {
+  const questions = sequelize.define('questions', {
     questfilename: DataTypes.STRING
   }, {});
-  question.associate = function(models) {
+  questions.associate = function(models) {
     
   };
-  return question;
+  return questions;
 };

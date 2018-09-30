@@ -6,14 +6,6 @@ module.exports = (sequelize, DataTypes) => {
     appointmentdate: DataTypes.DATE
   }, {});
   appointment.associate = function(models) {
-    appointment.belongsTo(models.student,{
-    	foreignKey: 'studentId',
-    	onDelete: 'CASCADE',
-    });
-    appointment.belongsTo(models.teacher,{
-    	foreignKey: 'teacherId',
-    	onDelete: 'CASCADE',
-    });
   };
   return appointment;
 };

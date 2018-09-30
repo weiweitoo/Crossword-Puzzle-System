@@ -4,10 +4,6 @@ module.exports = (sequelize, DataTypes) => {
     subjectname: DataTypes.STRING
   }, {});
   subject.associate = function(models) {
-    subject.hasMany(models.question, {
-      foreignKey: 'subjectId',
-      as: 'questions',
-    });
   };
   return subject;
 };
