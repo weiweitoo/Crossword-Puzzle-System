@@ -3,9 +3,9 @@ const ParentController = require('../controllers').ParentController;
 const ClassesController = require('../controllers').ClassesController;
 const ClassMemberController = require('../controllers').ClassMemberController;
 const StudentController = require('../controllers').StudentController;
-const StudentController = require('../controllers').StudentController;
 const TeacherController = require('../controllers').TeacherController;
 const AdminController = require('../controllers').AdminController;
+const FreeTimeSlotController = require('../controllers').FreeTimeSlotController;
 
 module.exports = (app) => {
   
@@ -20,14 +20,16 @@ module.exports = (app) => {
 
 	app.get('/api/classmember/:studentId', ClassMemberController.show);
 
-  app.get('/api/student', StudentController.list);
-  app.post('/api/student', StudentController.create); 
+	app.get('/api/student', StudentController.list);
+	app.post('/api/student', StudentController.create); 
 
-  app.get('/api/teacher', TeacherController.list);
-  app.post('/api/teacher', TeacherController.create); 
+	app.get('/api/teacher', TeacherController.list);
+	app.post('/api/teacher', TeacherController.create); 
 
-  app.get('/api/admin', AdminController.list);
-  app.post('/api/admin', AdminController.create); 
+	app.get('/api/admin', AdminController.list);
+	app.post('/api/admin', AdminController.create); 
+
+	app.get('/api/freetime/:teacherId', FreeTimeSlotController.show); 
 
 
 };

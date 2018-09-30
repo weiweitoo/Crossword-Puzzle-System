@@ -1,12 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const teacher = sequelize.define('teacher', {
+  const teachers = sequelize.define('teachers', {
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     }
   }, {});
-  teacher.associate = function(models) {
+  teachers.associate = function(models) {
   };
-  return teacher;
+  return teachers;
 };

@@ -2,6 +2,7 @@ var Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const Users = require('../models').users;
 const Students = require('../models').students;
+const Teachers = require('../models').teachers;
 const ClassMember = require('../models').classmember;
 const Classes = require('../models').classes;
 const Questions = require('../models').questions;
@@ -23,14 +24,38 @@ module.exports = {
         }
       })
       .then(function(questions){
-        // res.status(201).send(questions)
         Questions.findAll({
+          attributes: [['teacherId','id']],
           where:{
             [Op.or]: questions.map(function(e){
               return e.toJSON();
             })
           }
         })
+        .then(function(questions){
+          Teachers.findAll({
+            attributes: [['userId','id']],
+            where:{
+              [Op.or]: questions.map(function(e){
+                return e.toJSON();
+              })
+            }
+          })
+          .then(function(teachers){
+            // res.status(201).send(teachers)
+            Users.findAll({
+              where:{
+                [Op.or]: teachers.map(function(e){
+                  return e.toJSON();
+                })
+              }
+            })
+            .then(users => res.status(200).send(users))
+            .catch(error => res.status(400).send(error));
+          })
+          .catch(error => res.status(400).send(error));
+        })
+        .catch(error => res.status(400).send(error));
       })
       .catch(error => res.status(400).send(error));
     })

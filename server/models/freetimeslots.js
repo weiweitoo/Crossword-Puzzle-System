@@ -1,13 +1,13 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const freetimeslot = sequelize.define('freetimeslot', {
+  const freetimeslots = sequelize.define('freetimeslots', {
     timeslotfilename: DataTypes.STRING
   }, {});
-  freetimeslot.associate = function(models) {
-    freetimeslot.belongsTo(models.teacher,{
+  freetimeslots.associate = function(models) {
+    freetimeslots.belongsTo(models.teachers,{
     	foreignKey: 'teacherId',
     	onDelete: 'CASCADE',
     });
   };
-  return freetimeslot;
+  return freetimeslots;
 };
