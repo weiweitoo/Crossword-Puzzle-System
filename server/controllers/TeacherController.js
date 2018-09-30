@@ -1,10 +1,11 @@
 const Users = require('../models').users;
-const Parents = require('../models').parents;
+const Teachers = require('../models').teacher;
 const Sequelize = require('Sequelize');
 const Op = Sequelize.Op;
 
 module.exports = {
   create(req, res) {
+
     return Users.create({
         username: req.body.username,
         password: req.body.password,
@@ -13,19 +14,20 @@ module.exports = {
     .then(function(Users){
         // res.status(201).json(Users);
         // res.status(201).json({'hehe' : Users.id});
-        Parents.create({
+        Teachers.create({
             userId: Users.id
         })
-        .then(Parents => res.status(200).send(Parents))
+        .then(Teachers => res.status(200).send(Teachers))
         .catch(error => res.status(400).send(error));
     })
     .catch(error => res.status(400).send(error));
-  },
+    },
+
   list(req, res) {
-    return Parents.findAll({attributes:[['userId',"id"]]}).then(function(parents){
+    return Teachers.findAll({attributes:[['userId',"id"]]}).then(function(teachers){
         Users.findAll({
             where:{
-                [Op.or]: parents.map(function(e){
+                [Op.or]: teachers.map(function(e){
                 return e.toJSON();
             })
             }
@@ -36,4 +38,3 @@ module.exports = {
       .catch(error => res.status(400).send(error));
   },
 };
-

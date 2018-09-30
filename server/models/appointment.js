@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     appointmenttitle: DataTypes.STRING,
     appointmentdesc: DataTypes.STRING,
     appointmentdate: DataTypes.DATE
-  }, {});
+  });
   appointment.associate = function(models) {
   };
   return appointment;

@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     posttitle: DataTypes.STRING,
     postdescription: DataTypes.STRING,
     postdate: DataTypes.DATE
-  }, {});
+  });
   classpost.associate = function(models) {
     
   };
