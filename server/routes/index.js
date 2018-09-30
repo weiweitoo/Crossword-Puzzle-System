@@ -26,6 +26,7 @@ module.exports = (app) => {
 	app.get('/api/class', ClassesController.list);
 	app.post('/api/class', ClassesController.create);
 
+	app.post('/api/classmember', ClassMemberController.create);
 	app.get('/api/classmember/:studentId', ClassMemberController.show);
 
 	app.get('/api/student', StudentController.list);
