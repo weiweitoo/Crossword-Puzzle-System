@@ -10,6 +10,7 @@ const ClassController = require('../controllers').ClassController;
 const ClasspostController = require('../controllers').ClasspostController;
 const UserController = require('../controllers').UserController;
 const FreeTimeSlotController = require('../controllers').FreeTimeSlotController;
+const QuestionController = require('../controllers').QuestionController;
 
 module.exports = (app) => {
   
@@ -43,13 +44,16 @@ module.exports = (app) => {
   // app.get('/api/appointment', AppointmentsController.list);
   // app.post('/api/appointment', AppointmentsController.create); 
 
-  app.get('/api/class', ClassController.list);
-  app.post('/api/class', ClassController.create); 
 
   app.get('/api/classpost', ClasspostController.list);
   app.post('/api/classpost', ClasspostController.create); 
 
   app.get('/api/user', UserController.list);
   app.post('/api/user_login', UserController.login);
+  app.post('/api/user_type', UserController.user_type);
+
+  app.get('/api/question', QuestionController.list);
+  app.post('/api/question', QuestionController.create);
+  app.post('/api/savequestion', QuestionController.save_file);
 
 };
