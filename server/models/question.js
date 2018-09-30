@@ -4,23 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     questfilename: DataTypes.STRING
   }, {});
   question.associate = function(models) {
-    question.belongsTo(models.teacher,{
-      unique:true,
-    	foreignKey: 'teacherId',
-    	onDelete: 'CASCADE',
-    });
-    question.belongsTo(models.class,{
-    	foreignKey: 'classId',
-    	onDelete: 'CASCADE',
-    });
-    question.belongsTo(models.class,{
-    	foreignKey: 'classId',
-    	onDelete: 'CASCADE',
-    });
-    question.belongsTo(models.subject,{
-    	foreignKey: 'subjectId',
-    	onDelete: 'CASCADE',
-    });
+    
   };
   return question;
 };

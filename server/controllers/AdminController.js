@@ -1,9 +1,7 @@
 const Users = require('../models').users;
-const Parents = require('../models').parents;
+const Admins = require('../models').admin;
 const Sequelize = require('Sequelize');
 const Op = Sequelize.Op;
-
-
 
 module.exports = {
   create(req, res) {
@@ -16,20 +14,23 @@ module.exports = {
     .then(function(Users){
         // res.status(201).json(Users);
         // res.status(201).json({'hehe' : Users.id});
-        Parents.create({
+        Admins.create({
             userId: Users.id
         })
-        .then(Parents => res.status(200).send(Parents))
+        .then(Admins => res.status(200).send(Admins))
         .catch(error => res.status(400).send(error));
     })
     .catch(error => res.status(400).send(error));
     },
 
   list(req, res) {
-    return Parents.findAll({attributes:[['userId',"id"]]}).then(function(parents){
+    return Admins.findAll({
+      attributes:[['userId',"id"]]
+    })
+    .then(function(admins){
         Users.findAll({
             where:{
-                [Op.or]: parents.map(function(e){
+                [Op.or]: admins.map(function(e){
                 return e.toJSON();
             })
             }
@@ -40,4 +41,3 @@ module.exports = {
       .catch(error => res.status(400).send(error));
   },
 };
-

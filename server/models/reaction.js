@@ -4,15 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     reactiontype: DataTypes.INTEGER
   }, {});
   reaction.associate = function(models) {
-    reaction.belongsTo(models.user,{
-    	foreignKey: 'userId',
-    	onDelete: 'CASCADE',
-    });
-    reaction.belongsTo(models.classpost,{
-      unique:true,
-    	foreignKey: 'classpostId',
-    	onDelete: 'CASCADE',
-    });
+   
   };
   return reaction;
 };
