@@ -1,6 +1,6 @@
 const Users = require('../models').users;
-const Admins = require('../models').admin;
-const Sequelize = require('Sequelize');
+const Admins = require('../models').admins;
+const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 module.exports = {

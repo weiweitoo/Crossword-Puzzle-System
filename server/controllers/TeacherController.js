@@ -1,6 +1,6 @@
 const Users = require('../models').users;
 const Teachers = require('../models').teachers;
-const Sequelize = require('Sequelize');
+const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 module.exports = {
@@ -35,6 +35,6 @@ module.exports = {
         .then(cls => res.status(201).send(cls))
         .catch(error => res.status(400).send(error));
     })
-      .catch(error => res.status(400).send(error));
+    .catch(error => res.status(400).send(error));
   },
 };

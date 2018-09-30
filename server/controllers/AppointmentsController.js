@@ -1,4 +1,4 @@
-const Appointment = require('../models').appointment;
+const Appointment = require('../models').appointments;
 
 module.exports = {
   create(req, res) {
