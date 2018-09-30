@@ -6,6 +6,7 @@ const AdminController = require('./AdminController.js');
 const AppointmentsController = require('./AppointmentsController.js');
 const ClassController = require('./ClassController.js');
 const ClasspostController = require('./ClasspostController.js');
+const UserController = require('./UserController.js');
 
 module.exports = {
   TestController,
@@ -15,5 +16,6 @@ module.exports = {
   AdminController,
   AppointmentsController,
   ClassController,
-  ClasspostController
+  ClasspostController,
+  UserController
 };

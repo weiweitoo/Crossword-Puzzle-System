@@ -6,6 +6,7 @@ const AdminController = require('../controllers').AdminController;
 const AppointmentsController = require('../controllers').AppointmentsController;
 const ClassController = require('../controllers').ClassController;
 const ClasspostController = require('../controllers').ClasspostController;
+const UserController = require('../controllers').UserController;
 
 module.exports = (app) => {
   
@@ -30,5 +31,6 @@ module.exports = (app) => {
   app.get('/api/classpost', ClasspostController.list);
   app.post('/api/classpost', ClasspostController.create); 
 
+  app.get('/api/user', UserController.list);
 
 };
