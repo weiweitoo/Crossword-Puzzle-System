@@ -8,6 +8,18 @@ module.exports = {
       .catch(error => res.status(400).send(error));
   },
   login(req, res){
-    if(req)
+   Users.findAll({
+      where: {
+        username : req.body.username,
+        password : req.body.password
+      }
+   }).then(function(users){
+    if(!users[0]){
+      res.status(200).send("invalid account");
+    }
+    else{
+      res.status(200).send("you are in");
+    }
+   }).catch(error => res.status(400).send(error));
   }
 };

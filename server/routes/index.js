@@ -45,5 +45,6 @@ module.exports = (app) => {
   app.post('/api/classpost', ClasspostController.create); 
 
   app.get('/api/user', UserController.list);
+  app.post('/api/user_login', UserController.login);
 
 };
