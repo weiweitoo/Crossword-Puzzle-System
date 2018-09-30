@@ -7,6 +7,14 @@ var fs = require('fs');
 
 module.exports = {
   create(req, res) {
+    // Save file
+    fs.writeFile("./public/uploadQuestion/dede.csv", req.body.csv, function(err) {
+        if(err) {
+            return console.log(err);
+        }
+        res.send({"status":"The file was saved!"})
+    }); 
+
     return Questions.create({
         questfilename: req.body.questfilename,
         teacherId: req.body.teacherId,

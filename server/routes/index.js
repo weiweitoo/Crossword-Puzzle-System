@@ -12,6 +12,7 @@ const UserController = require('../controllers').UserController;
 const FreeTimeSlotController = require('../controllers').FreeTimeSlotController;
 const QuestionController = require('../controllers').QuestionController;
 const CommentsController = require('../controllers').CommentsController;
+const ResultsController = require('../controllers').ResultsController;
 
 module.exports = (app) => {
 	
@@ -81,15 +82,5 @@ module.exports = (app) => {
 	app.get('/api/results', ResultsController.list);
 	app.post('/api/results', ResultsController.create);
 	app.get('/api/avg_results/:questId', ResultsController.avg_results);
-
-
-	app.post('/csv', function (req, res) {
-	  fs.writeFile("./public/uploadQuestion/dede.csv", req.body.csv, function(err) {
-	      if(err) {
-	          return console.log(err);
-	      }
-	      res.send({"status":"The file was saved!"})
-	  }); 
-	})
 
 };
