@@ -44,7 +44,6 @@ module.exports = {
                 }
               }).then(function(classes){
                 Questions.findAll({
-                  attributes : ['questfilename'],
                   where : {
                     classId : classes[0].dataValues.id
                   }
