@@ -1,14 +1,11 @@
 const TestController = require('../controllers').TestController;
 const ParentController = require('../controllers').ParentController;
-<<<<<<< HEAD
 const ClassesController = require('../controllers').ClassesController;
 const ClassMemberController = require('../controllers').ClassMemberController;
 const StudentController = require('../controllers').StudentController;
-=======
 const StudentController = require('../controllers').StudentController;
 const TeacherController = require('../controllers').TeacherController;
 const AdminController = require('../controllers').AdminController;
->>>>>>> 5c6a269b77e032442b9030d71a8b9cd7ea74b8db
 
 module.exports = (app) => {
   
