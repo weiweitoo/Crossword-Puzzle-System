@@ -68,9 +68,7 @@ module.exports = (app) => {
 	var upload = multer({storage: storage})
 
 	app.post('/api/upload', upload.single('avatar'), (req, res) => {
-		return res.send({
-	      success: 123
-	    });
+		// return res.send({'123':req.body.file});
 	  if (!req.body.file) {
 	    console.log("No file received");
 	    return res.send({
