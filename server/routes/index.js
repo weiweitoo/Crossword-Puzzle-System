@@ -11,6 +11,7 @@ const ClasspostController = require('../controllers').ClasspostController;
 const UserController = require('../controllers').UserController;
 const FreeTimeSlotController = require('../controllers').FreeTimeSlotController;
 const QuestionController = require('../controllers').QuestionController;
+var multer = require('multer');
 
 module.exports = (app) => {
   
@@ -45,15 +46,41 @@ module.exports = (app) => {
   // app.post('/api/appointment', AppointmentsController.create); 
 
 
-  app.get('/api/classpost', ClasspostController.list);
-  app.post('/api/classpost', ClasspostController.create); 
+	app.get('/api/classpost', ClasspostController.list);
+	app.post('/api/classpost', ClasspostController.create); 
 
-  app.get('/api/user', UserController.list);
-  app.post('/api/user_login', UserController.login);
-  app.post('/api/user_type', UserController.user_type);
+	app.get('/api/user', UserController.list);
+	app.post('/api/user_login', UserController.login);
+	app.post('/api/user_type', UserController.user_type);
 
-  app.get('/api/question', QuestionController.list);
-  app.post('/api/question', QuestionController.create);
-  app.post('/api/savequestion', QuestionController.save_file);
+	app.get('/api/question', QuestionController.list);
+	app.post('/api/question', QuestionController.create);
+	app.post('/api/savequestion', QuestionController.save_file);
+
+	var storage = multer.diskStorage({
+	    destination: (req, file, cb) => {
+	      cb(null, 'public/images/uploads')
+	    },
+	    filename: (req, file, cb) => {
+	      cb(null, file.fieldname + '-' + Date.now())
+	    }
+	});
+	var upload = multer({storage: storage})
+
+	app.post('/api/upload', upload.single('avatar'), (req, res) => {
+	  if (!req.body.file) {
+	    console.log("No file received");
+	    return res.send({
+	      success: false
+	    });
+
+	  } else {
+	    console.log('file received');
+	    return res.send({
+	      success: true
+	    })
+	  }
+	});
+
 
 };

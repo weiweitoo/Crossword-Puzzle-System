@@ -6,7 +6,6 @@ const StudentController = require('./StudentController.js');
 const TeacherController = require('./TeacherController.js');
 const AdminController = require('./AdminController.js');
 const AppointmentsController = require('./AppointmentsController.js');
-const ClassController = require('./ClassController.js');
 const ClasspostController = require('./ClasspostController.js');
 const UserController = require('./UserController.js');
 const FreeTimeSlotController = require('./FreeTimeSlotController.js');
@@ -21,7 +20,6 @@ module.exports = {
   TeacherController,
   AdminController,
   AppointmentsController,
-  ClassController,
   ClasspostController,
   UserController,
   FreeTimeSlotController,
