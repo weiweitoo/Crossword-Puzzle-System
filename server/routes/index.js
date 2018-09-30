@@ -49,8 +49,10 @@ module.exports = (app) => {
 
 	app.get('/api/freetime/:teacherId', FreeTimeSlotController.show); 
 
-  // app.get('/api/appointment', AppointmentsController.list);
-  // app.post('/api/appointment', AppointmentsController.create); 
+	app.get('/api/appointment', AppointmentsController.list);
+	app.get('/api/available-appointment/:teacherId', AppointmentsController.getAvailableSlot);
+	app.post('/api/appointment', AppointmentsController.create); 
+	app.post('/api/book-appointment', AppointmentsController.bookSlot); 
 
 
 	app.get('/api/classpost', ClasspostController.list);
@@ -61,7 +63,7 @@ module.exports = (app) => {
 
 	app.get('/api/user', UserController.list);
 	app.post('/api/user_login', UserController.login);
-  app.get('/api/user-type/:userId', UserController.userType);
+	app.get('/api/user-type/:userId', UserController.userType);
 
 	app.get('/api/question', QuestionController.list);
 	app.post('/api/question', QuestionController.create);
@@ -69,27 +71,27 @@ module.exports = (app) => {
 	app.get('/api/question/:studentId/:classId', QuestionController.get_quest_cls_std_id);
 
 	var storage = multer.diskStorage({
-	    destination: (req, file, cb) => {
-	      cb(null, 'public/images/uploads')
-	    },
-	    filename: (req, file, cb) => {
-	      cb(null, file.fieldname + '-' + Date.now())
-	    }
+		destination: (req, file, cb) => {
+		  cb(null, 'public/images/uploads')
+		},
+		filename: (req, file, cb) => {
+		  cb(null, file.fieldname + '-' + Date.now())
+		}
 	});
 	var upload = multer({storage: storage})
 
 	app.post('/api/upload', upload.single('avatar'), (req, res) => {
 		// return res.send({'123':req.body.file});
 	  if (!req.body.file) {
-	    console.log("No file received");
-	    return res.send({
-	      success: false
-	    });
+		console.log("No file received");
+		return res.send({
+		  success: false
+		});
 	  } else {
-	    console.log('file received');
-	    return res.send({
-	      success: true
-	    })
+		console.log('file received');
+		return res.send({
+		  success: true
+		})
 	  }
 	});
 
