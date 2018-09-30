@@ -20,7 +20,7 @@ module.exports = (app) => {
 	app.post('/api/parent', ParentController.create); 
 
 
-	app.get('/api/lecturer-list', StudentController.getLecturerList);
+	app.get('/api/lecturer-list/:userId', StudentController.getLecturerList);
 
 	app.get('/api/class/:classId', ClassesController.show);
 	app.get('/api/class', ClassesController.list);
