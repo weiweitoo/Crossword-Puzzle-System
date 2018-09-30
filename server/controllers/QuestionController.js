@@ -22,6 +22,15 @@ module.exports = {
       .then(user => res.status(200).send(user))
       .catch(error => res.status(400).send(error));
   },
+  list_withId(req, res){
+    Questions.findAll({
+      where : {
+        id : req.params.questId
+      }
+    })
+    .then(questions => res.status(200).send(questions))
+    .catch(error => res.status(400).send(error));
+  },
   save_file(req, res){
     res.send(req.files);
   },

@@ -72,6 +72,7 @@ module.exports = (app) => {
 	app.get('/api/user-type/:userId', UserController.userType);
 
 	app.get('/api/question', QuestionController.list);
+	app.get('/api/question/:questId', QuestionController.list_withId);
 	app.post('/api/question', QuestionController.create);
 	app.post('/api/savequestion', QuestionController.save_file);
 	app.get('/api/question/:studentId/:classId', QuestionController.get_quest_cls_std_id);
