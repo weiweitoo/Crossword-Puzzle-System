@@ -15,14 +15,14 @@ module.exports = {
         Teachers.create({
             userId: Users.id
         })
-        .then(Teachers => res.status(200).send(Teachers))
+        .then(Teachers => res.status(201).send(Teachers))
         .catch(error => res.status(400).send(error));
     })
     .catch(error => res.status(400).send(error));
     },
 
     list(req, res) {
-        return Teachers.findAll({attributes:[['id','userId',"id"]]}).then(function(teachers){
+        return Teachers.findAll({attributes:[['userId',"id"]]}).then(function(teachers){
             Users.findAll({
                 attributes:['id','username','email'],
                 where:{
@@ -31,7 +31,7 @@ module.exports = {
                 })
                 }
             })
-            .then(cls => res.status(201).send(cls))
+            .then(cls => res.status(200).send(cls))
             .catch(error => res.status(400).send(error));
         })
         .catch(error => res.status(400).send(error));
@@ -43,7 +43,7 @@ module.exports = {
             userId: req.params.userId
           }
         })
-        .then(teachers => res.status(201).send(teachers))
+        .then(teachers => res.status(200).send(teachers))
         .catch(error => res.status(400).send(error));
     }
 };

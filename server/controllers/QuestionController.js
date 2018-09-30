@@ -9,7 +9,7 @@ module.exports = {
         classId: req.body.classId,
         subjectId: req.body.subjectId
     })
-    .then(questions => res.status(200).send(questions))
+    .then(questions => res.status(201).send(questions))
     .catch(error => res.status(400).send(error));
     },
   list(req, res) {

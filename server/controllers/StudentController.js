@@ -72,7 +72,7 @@ module.exports = {
         Students.create({
             userId: Users.id
         })
-        .then(Students => res.status(200).send(Students))
+        .then(Students => res.status(201).send(Students))
         .catch(error => res.status(400).send(error));
     })
     .catch(error => res.status(400).send(error));
@@ -88,7 +88,7 @@ module.exports = {
             })
             }
         })
-        .then(cls => res.status(201).send(cls))
+        .then(cls => res.status(200).send(cls))
         .catch(error => res.status(400).send(error));
     })
       .catch(error => res.status(400).send(error));
@@ -100,7 +100,7 @@ module.exports = {
           userId: req.params.userId
         }
       })
-      .then(students => res.status(201).send(students))
+      .then(students => res.status(200).send(students))
       .catch(error => res.status(400).send(error));
   }
 };

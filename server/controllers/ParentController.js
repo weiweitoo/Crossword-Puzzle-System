@@ -15,7 +15,7 @@ module.exports = {
             userId: Users.id,
             childrenId: req.body.childrenId
         })
-        .then(Parents => res.status(200).send(Parents))
+        .then(Parents => res.status(201).send(Parents))
         .catch(error => res.status(400).send(error));
     })
     .catch(error => res.status(400).send(error));
@@ -31,7 +31,7 @@ module.exports = {
                 })
                 }
             })
-            .then(cls => res.status(201).send(cls))
+            .then(cls => res.status(200).send(cls))
             .catch(error => res.status(400).send(error));
         })
           .catch(error => res.status(400).send(error));
@@ -43,7 +43,7 @@ module.exports = {
             userId: req.params.userId
           }
         })
-        .then(parents => res.status(201).send(parents))
+        .then(parents => res.status(200).send(parents))
         .catch(error => res.status(400).send(error));
     }
 };
