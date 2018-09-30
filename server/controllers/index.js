@@ -10,6 +10,7 @@ const ClasspostController = require('./ClasspostController.js');
 const UserController = require('./UserController.js');
 const FreeTimeSlotController = require('./FreeTimeSlotController.js');
 const QuestionController = require('./QuestionController.js');
+const CommentsController = require('./CommentsController.js');
 
 module.exports = {
   TestController,
@@ -23,5 +24,6 @@ module.exports = {
   ClasspostController,
   UserController,
   FreeTimeSlotController,
-  QuestionController
+  QuestionController,
+  CommentsController
 };

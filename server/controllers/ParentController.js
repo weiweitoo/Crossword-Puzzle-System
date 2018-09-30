@@ -45,6 +45,15 @@ module.exports = {
         })
         .then(parents => res.status(200).send(parents))
         .catch(error => res.status(400).send(error));
+    },
+    getUserId(req, res) {
+      Parents.findAll({
+          where:{
+            id : req.params.parentId
+          }
+        })
+        .then(parents => res.status(200).send(parents[0]))
+        .catch(error => res.status(400).send(error));
     }
 };
 

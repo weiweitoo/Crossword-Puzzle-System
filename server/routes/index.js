@@ -11,12 +11,14 @@ const ClasspostController = require('../controllers').ClasspostController;
 const UserController = require('../controllers').UserController;
 const FreeTimeSlotController = require('../controllers').FreeTimeSlotController;
 const QuestionController = require('../controllers').QuestionController;
+const CommentsController = require('../controllers').CommentsController;
 var multer = require('multer');
 
 module.exports = (app) => {
   
 	app.get('/api/parent', ParentController.list);
-	app.get('/api/parent/:userId', ParentController.getId);
+	app.get('/api/userid-parent/:userId', ParentController.getId);
+	app.get('/api/parent-userid/:parentId', ParentController.getUserId);
 	app.post('/api/parent', ParentController.create); 
 
 
@@ -25,6 +27,9 @@ module.exports = (app) => {
 	app.get('/api/class/:classId', ClassesController.show);
 	app.get('/api/class', ClassesController.list);
 	app.post('/api/class', ClassesController.create);
+	app.get('/api/classpost/:classId', ClassesController.getPostById);
+	app.get('/api/reaction/:classpostId', ClassesController.getReactionById);
+	app.get('/api/comment/:classpostId', ClassesController.getCommentById);
 
 	app.post('/api/classmember', ClassMemberController.create);
 	app.get('/api/classmember/:studentId', ClassMemberController.show);
@@ -51,6 +56,9 @@ module.exports = (app) => {
 
 	app.get('/api/classpost', ClasspostController.list);
 	app.post('/api/classpost', ClasspostController.create); 
+
+	app.get('/api/comments', CommentsController.list);
+	app.post('/api/comments', CommentsController.create); 
 
 	app.get('/api/user', UserController.list);
 	app.post('/api/user_login', UserController.login);
