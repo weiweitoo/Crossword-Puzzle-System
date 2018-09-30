@@ -92,4 +92,14 @@ module.exports = {
     })
       .catch(error => res.status(400).send(error));
   },
+
+  getId(req, res) {
+    Students.findAll({
+        where:{
+          id: req.params.userId
+        }
+      })
+      .then(students => res.status(201).send(students))
+      .catch(error => res.status(400).send(error));
+  }
 };

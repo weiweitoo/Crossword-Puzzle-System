@@ -23,18 +23,28 @@ module.exports = {
     .catch(error => res.status(400).send(error));
     },
 
-  list(req, res) {
-    return Teachers.findAll({attributes:[['userId',"id"]]}).then(function(teachers){
-        Users.findAll({
-            where:{
-                [Op.or]: teachers.map(function(e){
-                return e.toJSON();
+    list(req, res) {
+        return Teachers.findAll({attributes:[['userId',"id"]]}).then(function(teachers){
+            Users.findAll({
+                where:{
+                    [Op.or]: teachers.map(function(e){
+                    return e.toJSON();
+                })
+                }
             })
-            }
+            .then(cls => res.status(201).send(cls))
+            .catch(error => res.status(400).send(error));
         })
-        .then(cls => res.status(201).send(cls))
         .catch(error => res.status(400).send(error));
-    })
-    .catch(error => res.status(400).send(error));
-  },
+    },
+
+    getId(req, res) {
+      Teachers.findAll({
+          where:{
+            id: req.params.userId
+          }
+        })
+        .then(teachers => res.status(201).send(teachers))
+        .catch(error => res.status(400).send(error));
+    }
 };

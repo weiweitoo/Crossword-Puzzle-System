@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     }
   }, {});
-  teachers.associate = function(models) {
-  };
   return teachers;
 };
+
+

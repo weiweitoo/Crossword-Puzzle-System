@@ -8,6 +8,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      teacherId:{
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references:{
+          model: 'teachers',
+          key: 'id',
+          as:'teacherId',
+        },
+      },
       classname: {
         allowNull: false,
         type: Sequelize.STRING

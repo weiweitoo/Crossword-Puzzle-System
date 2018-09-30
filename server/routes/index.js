@@ -14,7 +14,9 @@ const FreeTimeSlotController = require('../controllers').FreeTimeSlotController;
 module.exports = (app) => {
   
 	app.get('/api/parent', ParentController.list);
+	app.get('/api/parent/:userId', ParentController.getId);
 	app.post('/api/parent', ParentController.create); 
+
 
 	app.get('/api/lecturer-list', StudentController.getLecturerList);
 
@@ -25,12 +27,15 @@ module.exports = (app) => {
 	app.get('/api/classmember/:studentId', ClassMemberController.show);
 
 	app.get('/api/student', StudentController.list);
+	app.get('/api/student/:userId', StudentController.getId);
 	app.post('/api/student', StudentController.create); 
 
 	app.get('/api/teacher', TeacherController.list);
+	app.get('/api/teacher/:userId', TeacherController.getId);
 	app.post('/api/teacher', TeacherController.create); 
 
 	app.get('/api/admin', AdminController.list);
+	app.get('/api/admin/:userId', AdminController.getId);
 	app.post('/api/admin', AdminController.create); 
 
 	app.get('/api/freetime/:teacherId', FreeTimeSlotController.show); 

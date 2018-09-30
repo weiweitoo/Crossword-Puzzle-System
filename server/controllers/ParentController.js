@@ -20,19 +20,30 @@ module.exports = {
     })
     .catch(error => res.status(400).send(error));
   },
-  list(req, res) {
-    return Parents.findAll({attributes:[['userId',"id"]]}).then(function(parents){
-        Users.findAll({
-            where:{
-                [Op.or]: parents.map(function(e){
-                return e.toJSON();
+    list(req, res) {
+        // TODO join with parent to get children id
+        return Parents.findAll({attributes:[['userId',"id"]]}).then(function(parents){
+            Users.findAll({
+                where:{
+                    [Op.or]: parents.map(function(e){
+                    return e.toJSON();
+                })
+                }
             })
-            }
+            .then(cls => res.status(201).send(cls))
+            .catch(error => res.status(400).send(error));
         })
-        .then(cls => res.status(201).send(cls))
+          .catch(error => res.status(400).send(error));
+    },
+
+    getId(req, res) {
+      Parents.findAll({
+          where:{
+            id: req.params.userId
+          }
+        })
+        .then(parents => res.status(201).send(parents))
         .catch(error => res.status(400).send(error));
-    })
-      .catch(error => res.status(400).send(error));
-  },
+    }
 };
 

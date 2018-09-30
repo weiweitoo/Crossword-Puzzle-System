@@ -4,37 +4,47 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 module.exports = {
-  create(req, res) {
-    return Users.create({
-        username: req.body.username,
-        password: req.body.password,
-        email: req.body.email,
-    })
-    .then(function(Users){
-        Admins.create({
-            userId: Users.id
+    create(req, res) {
+        return Users.create({
+            username: req.body.username,
+            password: req.body.password,
+            email: req.body.email,
         })
-        .then(Admins => res.status(200).send(Admins))
+        .then(function(Users){
+            Admins.create({
+                userId: Users.id
+            })
+            .then(Admins => res.status(200).send(Admins))
+            .catch(error => res.status(400).send(error));
+        })
         .catch(error => res.status(400).send(error));
-    })
-    .catch(error => res.status(400).send(error));
+        },
+
+    list(req, res) {
+        return Admins.findAll({
+          attributes:[['userId',"id"]]
+        })
+        .then(function(admins){
+            Users.findAll({
+                where:{
+                    [Op.or]: admins.map(function(e){
+                    return e.toJSON();
+                })
+                }
+            })
+            .then(cls => res.status(201).send(cls))
+            .catch(error => res.status(400).send(error));
+        })
+        .catch(error => res.status(400).send(error));
     },
 
-  list(req, res) {
-    return Admins.findAll({
-      attributes:[['userId',"id"]]
-    })
-    .then(function(admins){
-        Users.findAll({
+    getId(req, res) {
+        Admins.findAll({
             where:{
-                [Op.or]: admins.map(function(e){
-                return e.toJSON();
-            })
+              id: req.params.userId
             }
-        })
-        .then(cls => res.status(201).send(cls))
-        .catch(error => res.status(400).send(error));
-    })
-      .catch(error => res.status(400).send(error));
-  },
+          })
+          .then(classes => res.status(201).send(classes))
+          .catch(error => res.status(400).send(error));
+    }
 };

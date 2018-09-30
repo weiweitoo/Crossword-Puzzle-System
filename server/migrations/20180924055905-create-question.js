@@ -11,16 +11,6 @@ module.exports = {
       questfilename: {
         type: Sequelize.STRING
       },
-      teacherId:{
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        references:{
-          model: 'teachers',
-          key: 'id',
-          as:'teacherId',
-        },
-      },
       classId:{
         primaryKey: true,
         type: Sequelize.INTEGER,

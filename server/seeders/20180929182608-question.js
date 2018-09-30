@@ -6,7 +6,6 @@ module.exports = {
       classId: '1',
       questfilename: "iamfake.csv",
       subjectId: '1',
-      teacherId: '1',
       createdAt: new Date(),
       updatedAt: new Date()
     }], {}),
@@ -14,7 +13,6 @@ module.exports = {
       classId: '2',
       questfilename: "iamfakde.csv",
       subjectId: '2',
-      teacherId: '1',
       createdAt: new Date(),
       updatedAt: new Date()
     }], {})
