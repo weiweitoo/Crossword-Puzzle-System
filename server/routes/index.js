@@ -70,9 +70,17 @@ module.exports = (app) => {
 	app.get('/api/user-type/:userId', UserController.userType);
 
 	app.get('/api/question', QuestionController.list);
+	app.get('/api/question/:questId', QuestionController.list_withId);
 	app.post('/api/question', QuestionController.create);
 	app.post('/api/savequestion', QuestionController.save_file);
 	app.get('/api/question/:studentId/:classId', QuestionController.get_quest_cls_std_id);
+	app.get('/api/question_score/:studentId/:classId', QuestionController.get_score_cls_std_id);
+	app.get('/api/question/:classId', QuestionController.get_quest_clsId);
+	
+
+	app.get('/api/results', ResultsController.list);
+	app.post('/api/results', ResultsController.create);
+	app.get('/api/avg_results/:questId', ResultsController.avg_results);
 
 
 	app.post('/csv', function (req, res) {

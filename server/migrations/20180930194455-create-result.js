@@ -1,33 +1,38 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('questions', {
+    return queryInterface.createTable('results', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      questfilename: {
-        type: Sequelize.STRING
+      score: {
+        type: Sequelize.FLOAT
       },
-      classId:{
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        references:{
-          model: 'classes',
-          key: 'id',
-          as:'classId',
-        },
+      timespent: {
+        type: Sequelize.INTEGER
       },
-      subjectId:{
+      questId:{
+        primaryKey: true,
         allowNull: false,
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references:{
-          model: 'subjects',
+          model: 'questions',
           key: 'id',
-          as:'subjectId',
+          as:'questId',
+        },
+      },
+      studentId:{
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references:{
+          model: 'students',
+          key: 'id',
+          as:'studentId',
         },
       },
       createdAt: {
@@ -41,6 +46,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('questions');
+    return queryInterface.dropTable('results');
   }
 };
