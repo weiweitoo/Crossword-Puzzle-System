@@ -8,7 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      timeslotfilename: {
+      timeSlotDay: {
+        type: Sequelize.STRING
+      },
+      timeSlotTime: {
         type: Sequelize.STRING
       },
       teacherId:{
