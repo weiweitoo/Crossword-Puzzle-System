@@ -1,6 +1,8 @@
 const Classes = require('../models').classes;
 const Users = require('../models').users;
 const Classposts = require('../models').classposts;
+const Reactions = require('../models').reactions;
+const Comments = require('../models').comments;
 
 module.exports = {
   create(req, res) {
@@ -26,21 +28,45 @@ module.exports = {
       .then(classes => res.status(200).send(classes))
       .catch(error => res.status(400).send(error));
   },
-  get_post(req, res){
-    return Classes.findAll({attributes:[['classId',"id"]]}).then(function(classes){
+  getPostById(req, res){
+    return Classes.findAll({attributes:[['id',"classId"]]}).then(function(classes){
             Classposts.findAll({
-                attributes:['posttitle','postdescription','postdate'],
+                attributes:['classId', 'posttitle','postdescription','postdate'],
                 where:{
-                    [Op.or]: classes.map(function(e){
-                    return e.toJSON();
-                })
+                    classId: req.params.classId
                 }
             })
             .then(cls => res.status(200).send(cls))
             .catch(error => res.status(400).send(error));
         })
           .catch(error => res.status(400).send(error));
-  }
+  },
+  getReactionById(req, res){
+    return Classposts.findAll({attributes:[['id',"classpostId"]]}).then(function(classposts){
+            Reactions.findAll({
+                attributes:['classpostId', 'reactiontype'],
+                where:{
+                    classId: req.params.classpostId
+                }
+            })
+            .then(cls => res.status(200).send(cls))
+            .catch(error => res.status(400).send(error));
+        })
+          .catch(error => res.status(400).send(error));
+  },
+  getCommentById(req, res){
+    return Classposts.findAll({attributes:[['id',"classpostId"]]}).then(function(classposts){
+            Comments.findAll({
+                attributes:['classpostId', 'content','commentdate'],
+                where:{
+                    classId: req.params.classpostId
+                }
+            })
+            .then(cls => res.status(200).send(cls))
+            .catch(error => res.status(400).send(error));
+        })
+          .catch(error => res.status(400).send(error));
+  },
 
   
 
