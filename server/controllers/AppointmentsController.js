@@ -34,7 +34,7 @@ module.exports = {
       {where: { id: req.body.appointmentId}}
     )
       .then(function([ rowsUpdate, [updatedAppointment] ]) {
-         res.status(200).send({"Status","Success"})
+         res.status(200).send({"Status":"Success"})
        })
       .catch(error => res.status(400).send(error));
   },
