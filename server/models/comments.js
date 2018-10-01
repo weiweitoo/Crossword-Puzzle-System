@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const comments = sequelize.define('comments', {
     content: DataTypes.STRING,
-    commentdate: DataTypes.DATE,
+    commentdate: DataTypes.STRING,
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
