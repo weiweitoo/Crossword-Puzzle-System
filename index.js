@@ -13,7 +13,10 @@ app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:500
 // Log requests to the console.
 app.use(logger('dev'));
 
-app.use(express.static(path.join(__dirname, 'public')))
+
+process.env.PWD = process.cwd(); 
+app.set('views', path.join(process.env.PWD, 'public')); 
+app.use(express.static(path.join(process.env.PWD, 'public'))); 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
