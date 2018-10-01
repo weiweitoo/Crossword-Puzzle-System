@@ -4,7 +4,7 @@ var fs = require('fs');
 module.exports = {
   create(req, res) {
     return Comments.create({
-        content: req.body.content,
+        content: req.body.contentText,
         commentdate: req.body.commentdate,
         userId: req.body.userId,
         classpostId: req.body.classpostId
