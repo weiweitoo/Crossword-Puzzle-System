@@ -56,7 +56,7 @@ module.exports = {
     return Classposts.findAll({attributes:[['id',"classpostId"]]}).then(function(classposts){
             Comments.findAll({
                 where:{
-                    classId: req.params.classpostId
+                    classpostId: req.params.classpostId
                 }
             })
             .then(cls => res.status(200).send(cls))
