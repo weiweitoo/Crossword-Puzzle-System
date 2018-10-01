@@ -3,7 +3,7 @@ var fs = require('fs');
 
 module.exports = {
   create(req, res) {
-    return Questions.create({
+    return Comments.create({
         content: req.body.content,
         commentdate: req.body.commentdate,
         userId: req.body.userId,
