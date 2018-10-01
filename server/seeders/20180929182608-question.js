@@ -5,6 +5,7 @@ module.exports = {
     return queryInterface.bulkInsert('questions', [{
       classId: '1',
       questfilename: "iamfake.csv",
+      teacherId: '4',
       subjectId: '1',
       createdAt: new Date(),
       updatedAt: new Date()
@@ -12,6 +13,7 @@ module.exports = {
     queryInterface.bulkInsert('questions', [{
       classId: '2',
       questfilename: "iamfakde.csv",
+      teacherId: '4',
       subjectId: '2',
       createdAt: new Date(),
       updatedAt: new Date()
