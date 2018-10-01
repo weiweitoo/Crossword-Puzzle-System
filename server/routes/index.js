@@ -76,7 +76,7 @@ module.exports = (app) => {
 	app.post('/api/savequestion', QuestionController.save_file);
 	app.get('/api/question/:studentId/:classId', QuestionController.get_quest_cls_std_id);
 	app.get('/api/question_score/:studentId/:classId', QuestionController.get_score_cls_std_id);
-	app.get('/api/question/:classId', QuestionController.get_quest_clsId);
+	app.get('/api/question-classId/:classId', QuestionController.get_quest_clsId);
 	
 
 	app.get('/api/results', ResultsController.list);
