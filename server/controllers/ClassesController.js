@@ -31,7 +31,6 @@ module.exports = {
   getPostById(req, res){
     return Classes.findAll({attributes:[['id',"classId"]]}).then(function(classes){
             Classposts.findAll({
-                attributes:['classId', 'posttitle','postdescription','postdate'],
                 where:{
                     classId: req.params.classId
                 }
@@ -44,7 +43,6 @@ module.exports = {
   getReactionById(req, res){
     return Classposts.findAll({attributes:[['id',"classpostId"]]}).then(function(classposts){
             Reactions.findAll({
-                attributes:['classpostId', 'reactiontype'],
                 where:{
                     classId: req.params.classpostId
                 }
@@ -57,7 +55,6 @@ module.exports = {
   getCommentById(req, res){
     return Classposts.findAll({attributes:[['id',"classpostId"]]}).then(function(classposts){
             Comments.findAll({
-                attributes:['classpostId', 'content','commentdate'],
                 where:{
                     classId: req.params.classpostId
                 }
