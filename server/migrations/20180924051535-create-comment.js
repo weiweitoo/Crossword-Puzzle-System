@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       commentdate: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING
       },
       userId:{
         allowNull: false,
